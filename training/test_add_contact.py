@@ -1,20 +1,12 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
-import unittest, time, re
+import unittest
 
 class TestAddContat(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox(firefox_binary="C:\\Program Files\\Mozilla Firefox\\firefox.exe")
         self.driver.implicitly_wait(30)
-        self.base_url = "https://www.google.com/"
-        self.verificationErrors = []
-        self.accept_next_alert = True
-    
+
     def test_add_contat(self):
         driver = self.driver
         driver.get("http://localhost/addressbook/")
@@ -56,20 +48,15 @@ class TestAddContat(unittest.TestCase):
         driver.find_element_by_name("email3").send_keys("--")
         driver.find_element_by_name("homepage").clear()
         driver.find_element_by_name("homepage").send_keys("home.apge")
-        Select(driver.find_element_by_name("bday")).select_by_visible_text("30")
-        Select(driver.find_element_by_name("bmonth")).select_by_visible_text("February")
-        driver.find_element_by_name("byear").clear()
+        driver.find_element_by_name("bday").send_keys("30")
+        driver.find_element_by_name("bmonth").send_keys("February")
         driver.find_element_by_name("byear").send_keys("1990")
-        Select(driver.find_element_by_name("aday")).select_by_visible_text("30")
-        Select(driver.find_element_by_name("amonth")).select_by_visible_text("February")
-        driver.find_element_by_name("ayear").clear()
+        driver.find_element_by_name("aday").send_keys("30")
+        driver.find_element_by_name("amonth").send_keys("February")
         driver.find_element_by_name("ayear").send_keys("2020")
-        Select(driver.find_element_by_name("new_group")).select_by_visible_text("Test 1")
-        driver.find_element_by_name("address2").clear()
+        driver.find_element_by_name("new_group").send_keys("Test 1")
         driver.find_element_by_name("address2").send_keys("non")
-        driver.find_element_by_name("phone2").clear()
         driver.find_element_by_name("phone2").send_keys("empty")
-        driver.find_element_by_name("notes").clear()
         driver.find_element_by_name("notes").send_keys("designer from SF")
         driver.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         driver.find_element_by_link_text("home").click()
@@ -98,7 +85,6 @@ class TestAddContat(unittest.TestCase):
     
     def tearDown(self):
         self.driver.quit()
-        self.assertEqual([], self.verificationErrors)
 
 if __name__ == "__main__":
     unittest.main()
