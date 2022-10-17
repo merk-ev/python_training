@@ -41,7 +41,7 @@ class TestAddContact(unittest.TestCase):
         driver.find_element_by_link_text("Logout").click()
 
     def go_home(self, driver):
-        # go to home
+        # go home
         driver.find_element_by_link_text("home").click()
 
     def add_new_contact(self, driver, contact):
