@@ -1,4 +1,4 @@
-# test
+# test/
 # -*- coding: utf-8 -*-
 import pytest
 from contact import Contact
