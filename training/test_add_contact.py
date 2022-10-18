@@ -3,6 +3,7 @@ from selenium import webdriver
 import unittest
 from contact import Contact
 
+
 class TestAddContact(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox(firefox_binary="C:\\Program Files\\Mozilla Firefox\\firefox.exe")
@@ -10,21 +11,18 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_contact(self):
         driver = self.driver
-        self.open_home_page(driver)
         self.login(driver)
-        self.add_new_contact(driver, Contact(firstname = "TEST", middlename = "Test middle", lastname = "Test Last",
-                                             nickname = "TTTT", title = "TITlE", company = "Company Name",
-                                             address = "RF",  home = "44-55", mobile = "+7-888", work = "41-87",
-                                             fax = "47-88", email = "e@m.ail", email2 = "--", email3 = "---",
-                                             homepage = "home.page", bday = "22", bmonth = "May", byear = "1984",
-                                             aday = "15", amonth = "March",  ayear = "2020", new_group = "Test2",
-                                             address2 = "street", phone2 = "non", notes = "designer from streets"))
-        self.go_home(driver)
+        self.add_new_contact(driver, Contact(firstname="TEST", middlename="Test middle", lastname="Test Last",
+                                             nickname="TTTT", title="TITlE", company="Company Name",
+                                             address="RF",  home="44-55", mobile="+7-888", work="41-87",
+                                             fax="47-88", email="e@m.ail", email2="--", email3="---",
+                                             homepage="home.page", bday="22", bmonth="May", byear="1984",
+                                             aday="15", amonth="March",  ayear="2020", new_group="Test2",
+                                             address2="street", phone2="non", notes="designer from streets"))
         self.logout(driver)
 
     def test_add_empty_contact(self):
         driver = self.driver
-        self.open_home_page(driver)
         self.login(driver)
         self.add_new_contact(driver, Contact(firstname="", middlename="", lastname="",
                                                  nickname="", title="", company="",
@@ -33,7 +31,6 @@ class TestAddContact(unittest.TestCase):
                                                  homepage="", bday="", bmonth="", byear="",
                                                  aday="", amonth="", ayear="", new_group="",
                                                  address2="", phone2="", notes=""))
-        self.go_home(driver)
         self.logout(driver)
 
     def logout(self, driver):
@@ -79,8 +76,10 @@ class TestAddContact(unittest.TestCase):
         driver.find_element_by_name("phone2").send_keys(contact.phone2)
         driver.find_element_by_name("notes").send_keys(contact.notes)
         driver.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.go_home(driver)
 
     def login(self, driver):
+        self.open_home_page(driver)
         # login
         driver.find_element_by_name("user").clear()
         driver.find_element_by_name("user").send_keys("admin")
@@ -115,6 +114,7 @@ class TestAddContact(unittest.TestCase):
     
     def tearDown(self):
         self.driver.quit()
+
 
 if __name__ == "__main__":
     unittest.main()
