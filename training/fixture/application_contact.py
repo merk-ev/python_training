@@ -1,4 +1,4 @@
-# fixture/
+# fixture
 from selenium import webdriver
 
 
