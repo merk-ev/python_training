@@ -1,5 +1,6 @@
 # fixture
 from selenium import webdriver
+from fixture.session import SessionHelper
 
 
 class ApplicationContact:
@@ -7,11 +8,7 @@ class ApplicationContact:
     def __init__(self):
         self.driver = webdriver.Firefox(firefox_binary="C:\\Program Files\\Mozilla Firefox\\firefox.exe")
         self.driver.implicitly_wait(30)
-
-    def logout(self):
-        driver = self.driver
-        # logout
-        driver.find_element_by_link_text("Logout").click()
+        self.session = SessionHelper(self)
 
     def go_home(self):
         driver = self.driver
@@ -55,16 +52,6 @@ class ApplicationContact:
         driver.find_element_by_name("notes").send_keys(contact.notes)
         driver.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.go_home()
-
-    def login(self):
-        driver = self.driver
-        self.open_home_page()
-        # login
-        driver.find_element_by_name("user").clear()
-        driver.find_element_by_name("user").send_keys("admin")
-        driver.find_element_by_name("pass").clear()
-        driver.find_element_by_name("pass").send_keys("secret")
-        driver.find_element_by_xpath("//input[@value='Login']").click()
 
     def open_home_page(self):
         driver = self.driver
