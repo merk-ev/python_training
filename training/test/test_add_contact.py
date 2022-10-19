@@ -1,4 +1,4 @@
-# test
+# test adding contact
 # -*- coding: utf-8 -*-
 from training.model.contact import Contact
 

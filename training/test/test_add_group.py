@@ -1,4 +1,4 @@
-# test
+# test adding group
 # -*- coding: utf-8 -*-
 from training.model.group import Group
 

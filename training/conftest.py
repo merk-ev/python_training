@@ -1,3 +1,4 @@
+# common fixture for all tests
 import pytest
 from training.fixture.application import Application
 
