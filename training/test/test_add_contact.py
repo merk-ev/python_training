@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from training.model.contact import Contact
 
-
 def test_add_contact(app):
     app.session.login(username="admin", password="secret")
     app.contact.add_new(Contact(firstname="TEST", middlename="Test middle", lastname="Test Last",
@@ -12,8 +11,6 @@ def test_add_contact(app):
                                 amonth="March", ayear="2020", new_group="Test2", address2="street", phone2="non",
                                 notes="designer from streets"))
     app.session.logout()
-
-
 def test_add_empty_contact(app):
     app.session.login(username="admin", password="secret")
     app.contact.add_new(Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
