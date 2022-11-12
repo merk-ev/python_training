@@ -13,7 +13,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.go_home()
 
-    def edit(self, contact):
+    def edit_first(self, contact):
         wd = self.app.wd
         self.go_home()
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
