@@ -4,6 +4,13 @@ from training.model.contact import Contact
 
 
 def test_edit_contact(app):
+    if app.contact.count() == 0:
+        app.contact.add_new(Contact(firstname="TESTOVIY", middlename="TESTOVIY", lastname="TESTOVIY",
+                                   nickname="TESTOVIY", title=" ", company=" ", address=" ",
+                                   home=" ", mobile=" ", work=" ", fax=" ", email=" ",
+                                   email2=" ", email3=" ", homepage=" ", bday=" ", bmonth=" ",
+                                   byear=" ", aday=" ", amonth=" ", ayear=" ", new_group=" ",
+                                   address2=" ", phone2=" ", notes=" "))
     app.contact.edit_first(Contact(firstname="EDIT", middlename="EDIT MIDDLE", lastname="EDIT Last",
                                    nickname="EEEE", title="EDIT TITLE", company="EDIT COMPANY", address="ED-IT",
                                    home="44-22", mobile="+7-888", work="41-87", fax="47-88", email="e@m.ail",
