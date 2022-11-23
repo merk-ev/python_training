@@ -9,7 +9,7 @@ class Application:
 
     def __init__(self):
         self.wd = webdriver.Firefox(firefox_binary="C:\\Program Files\\Mozilla Firefox\\firefox.exe")
-        self.wd.implicitly_wait(10)
+        self.wd.implicitly_wait(2)
         self.session = SessionHelper(self)
         self.contact = ContactHelper(self)
         self.group = GroupHelper(self)
