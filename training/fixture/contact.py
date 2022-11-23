@@ -85,6 +85,7 @@ class ContactHelper:
         # submit delete
         wd.find_element_by_css_selector('[value="Delete"]').click()
         wd.switch_to.alert.accept()
+        wd.find_element_by_css_selector("div.msgbox")
 
     def go_home(self):
         wd = self.app.wd
@@ -101,10 +102,8 @@ class ContactHelper:
         self.go_home()
         contacts_list = []
         for element in wd.find_elements_by_name("entry"):
-            id = element.find_element_by_css_selector("td input").get_attribute("value")
-            list_td = []
-            list_td = element.find_elements_by_css_selector("td")
-            firstname = list_td[2].text
-            lastname = list_td[1].text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            firstname = element.find_element_by_xpath("td[3]").text
+            lastname = element.find_element_by_xpath("td[2]").text
             contacts_list.append(Contact(firstname=firstname, lastname=lastname, id=id))
         return contacts_list
