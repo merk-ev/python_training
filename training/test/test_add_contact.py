@@ -12,19 +12,19 @@ def test_add_contact(app):
                                 amonth="March", ayear="2020", new_group="Test2", address2="street", phone2="non",
                                 notes="designer from streets")
      app.contact.add_new(contact)
+     assert len(old_contacts) + 1 == app.contact.count()
      new_contacts = app.contact.get_contact_list()
-     assert len(old_contacts) + 1 == len(new_contacts)
      old_contacts.append(contact)
      assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 
-def test_add_empty_contact(app):
-    old_contacts = app.contact.get_contact_list()
-    contact = Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
-                                address="", home="", mobile="", work="", fax="", email="", email2="", email3="",
-                                homepage="", bday="", bmonth="", byear="", aday="", amonth="", ayear="",
-                                new_group="", address2="", phone2="", notes="")
-    app.contact.add_new(contact)
-    new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) + 1 == len(new_contacts)
-    old_contacts.append(contact)
-    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+#def test_add_empty_contact(app):
+#    old_contacts = app.contact.get_contact_list()
+#    contact = Contact(firstname="", middlename="", lastname="", nickname="", title="", company="",
+#                                address="", home="", mobile="", work="", fax="", email="", email2="", email3="",
+#                                homepage="", bday="", bmonth="", byear="", aday="", amonth="", ayear="",
+#                                new_group="", address2="", phone2="", notes="")
+#    app.contact.add_new(contact)
+#    new_contacts = app.contact.get_contact_list()
+#    assert len(old_contacts) + 1 == len(new_contacts)
+#    old_contacts.append(contact)
+#    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
