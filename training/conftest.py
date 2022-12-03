@@ -1,11 +1,13 @@
 # common fixture for all tests
 import pytest
 from training.fixture.application import Application
-import json
 import os.path
+import importlib
+import json
 
 fixture = None
 target = None
+
 
 @pytest.fixture
 def app(request):
@@ -21,6 +23,7 @@ def app(request):
     fixture.session.ensure_login(username=target['username'], password=target['password'])
     return fixture
 
+
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
     def fin():
@@ -33,3 +36,14 @@ def stop(request):
 def pytest_addoption(parser):
     parser.addoption('--browser', action='store', default='firefox')
     parser.addoption('--target', action='store', default='target.json')
+
+
+def pytest_generate_tests(metafunc):
+    for fixture in metafunc.fixturenames:
+        if fixture.startswith('training/data_'):
+            testdata = load_from_module(fixture[5:])
+            metafunc.parametrize(fixture, testdata, ids=[str(x) for x in testdata])
+
+
+def load_from_module(module):
+    return importlib.import_module('data.%s' % module).testdata
