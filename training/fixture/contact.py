@@ -178,3 +178,29 @@ class ContactHelper:
         mobilephone = re.search('M: (.*)', text).group(1)
         secondaryphone = re.search('P: (.*)', text).group(1)
         return Contact(home=homephone, mobile=mobilephone, work=workphone, phone2=secondaryphone)
+
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.go_home()
+        # select some group
+        self.select_contact_by_id(id)
+        # submit delete
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to.alert.accept()
+        wd.find_element_by_css_selector("div.msgbox")
+        self.go_home()
+        self.contact_cache = None
+
+    def select_contact_by_id(self, contact_id):
+        wd = self.app.wd
+        wd.find_element_by_xpath(f"//input[@id='{contact_id}']").click()
+
+    def edit_contact_by_id(self, id, contact):
+        wd = self.app.wd
+        self.go_home()
+        xpath = f'//a[@href="edit.php?id={id}"]'
+        wd.find_element_by_xpath(xpath).click()
+        self.filling(contact)
+        wd.find_element_by_name("update").click()
+        self.go_home()
+        self.contact_cache = None
