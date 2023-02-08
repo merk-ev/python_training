@@ -198,9 +198,10 @@ class ContactHelper:
     def edit_contact_by_id(self, id, contact):
         wd = self.app.wd
         self.go_home()
-        wd.find_element_by_xpath(f'//a[@href="edit.php?id={id}"]').click()
+        xpath = f'//a[@href="edit.php?id={id}"]'
+        wd.find_element_by_xpath(xpath).click()
         self.filling(contact)
-        wd.find_element_by_name('update').click()
+        wd.find_element_by_name("update").click()
         self.go_home()
         self.contact_cache = None
 
@@ -220,6 +221,6 @@ class ContactHelper:
         wd = self.app.wd
         self.go_home()
         wd.find_element_by_name("group").click()
-        wd.find_element_by_xpath(f"//select[@name='group']/option[@value='{group_id}']").click()
+        wd.find_element_by_name("group").find_element_by_css_selector("[value='%s']" % group_id).click()
         self.select_contact_by_id(contact.id)
-        wd.find_element("name", 'remove').click()
+        wd.find_element_by_name('remove').click()

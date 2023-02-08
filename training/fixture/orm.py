@@ -20,6 +20,7 @@ class ORMFixture:
 
     class ORMContact(db.Entity):
         _table_ = 'addressbook'
+        id = PrimaryKey(int, column='id')
         firstname = Optional(str, column='firstname')
         lastname = Optional(str, column='lastname')
         deprecated = Optional(datetime, column='deprecated')

@@ -13,8 +13,8 @@ def test_delete_contact_from_group(app, db, orm):
     contacts = db.get_contact_list()
     contact = random.choice(contacts)
     if len(orm.get_contacts_in_group(group)) == 0:
-        app.contact.add_contact_to_group(contact.id, group.id)
+        app.contact.add_contact_to_group(contact, group)
     contacts_in_group = orm.get_contacts_in_group(group)
-    app.contact.del_contact_by_id_from_group(contact.id, group.id)
+    app.contact.del_contact_by_id_from_group(contact, group.id)
     new_contacts_in_group = orm.get_contacts_in_group(group)
     assert contacts_in_group not in new_contacts_in_group
