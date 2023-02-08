@@ -191,16 +191,35 @@ class ContactHelper:
         self.go_home()
         self.contact_cache = None
 
-    def select_contact_by_id(self, contact_id):
+    def select_contact_by_id(self, id):
         wd = self.app.wd
-        wd.find_element_by_xpath(f"//input[@id='{contact_id}']").click()
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
     def edit_contact_by_id(self, id, contact):
         wd = self.app.wd
         self.go_home()
-        xpath = f'//a[@href="edit.php?id={id}"]'
-        wd.find_element_by_xpath(xpath).click()
+        wd.find_element_by_xpath(f'//a[@href="edit.php?id={id}"]').click()
         self.filling(contact)
-        wd.find_element_by_name("update").click()
+        wd.find_element_by_name('update').click()
         self.go_home()
         self.contact_cache = None
+
+    def add_contact_to_group(self, contact, group):
+        wd = self.app.wd
+        self.go_home()
+        self.select_contact_by_id(contact.id)
+        self.select_group_to_add(group.id)
+        wd.find_element_by_name("add").click()
+
+    def select_group_to_add(self, group_id):
+        wd = self.app.wd
+        wd.find_element_by_name('to_group').click()
+        wd.find_element_by_xpath(f"//select[@name='to_group']/option[@value='{group_id}']").click()
+
+    def del_contact_by_id_from_group(self, contact, group_id):
+        wd = self.app.wd
+        self.go_home()
+        wd.find_element_by_name("group").click()
+        wd.find_element_by_xpath(f"//select[@name='group']/option[@value='{group_id}']").click()
+        self.select_contact_by_id(contact.id)
+        wd.find_element("name", 'remove').click()
