@@ -1,0 +1,53 @@
+Started by user admin
+Running as SYSTEM
+Building in workspace C:\Users\xmerk\.jenkins\workspace\addresbook_tests
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\Users\xmerk\.jenkins\workspace\addresbook_tests\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/merk-ev/python_training # timeout=10
+Fetching upstream changes from https://github.com/merk-ev/python_training
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.39.2.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/merk-ev/python_training +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision f51b5356fe9700fd1a94040435a7b747ae3e669f (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f f51b5356fe9700fd1a94040435a7b747ae3e669f # timeout=10
+Commit message: "Create error.txt"
+ > git.exe rev-list --no-walk f51b5356fe9700fd1a94040435a7b747ae3e669f # timeout=10
+[addresbook_tests] $ cmd.exe /c call C:\Users\xmerk\AppData\Local\Temp\shiningpanda16722367088303935080.bat
+
+C:\Users\xmerk\.jenkins\workspace\addresbook_tests>pip install -r requirements.txt 
+Requirement already satisfied: pytest in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 1)) (7.2.1)
+Requirement already satisfied: virtualenv in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 2)) (20.19.0)
+Requirement already satisfied: selenium==3.141.0 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 3)) (3.141.0)
+Requirement already satisfied: jsonpickle in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 4)) (3.0.1)
+Requirement already satisfied: pony in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 5)) (0.7.16)
+Requirement already satisfied: pymysql in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 6)) (1.0.2)
+Requirement already satisfied: mysql-connector-python-rf in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from -r requirements.txt (line 7)) (2.2.2)
+Requirement already satisfied: urllib3 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from selenium==3.141.0->-r requirements.txt (line 3)) (1.26.14)
+Requirement already satisfied: iniconfig in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1)) (2.0.0)
+Requirement already satisfied: pluggy<2.0,>=0.12 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1)) (1.0.0)
+Requirement already satisfied: colorama in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1)) (0.4.6)
+Requirement already satisfied: exceptiongroup>=1.0.0rc8 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1)) (1.1.0)
+Requirement already satisfied: attrs>=19.2.0 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1)) (22.2.0)
+Requirement already satisfied: tomli>=1.0.0 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1)) (2.0.1)
+Requirement already satisfied: packaging in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from pytest->-r requirements.txt (line 1)) (23.0)
+Requirement already satisfied: filelock<4,>=3.4.1 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from virtualenv->-r requirements.txt (line 2)) (3.9.0)
+Requirement already satisfied: platformdirs<4,>=2.4 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from virtualenv->-r requirements.txt (line 2)) (3.0.0)
+Requirement already satisfied: distlib<1,>=0.3.6 in c:\users\xmerk\.jenkins\shiningpanda\jobs\2fd40cfe\virtualenvs\d41d8cd9\lib\site-packages (from virtualenv->-r requirements.txt (line 2)) (0.3.6)
+
+C:\Users\xmerk\.jenkins\workspace\addresbook_tests>pytest training\‪test\test_add_group.py 
+ERROR: file or directory not found: training\���test\test_add_group.py
+
+============================= test session starts =============================
+platform win32 -- Python 3.9.13, pytest-7.2.1, pluggy-1.0.0
+rootdir: C:\Users\xmerk\.jenkins\workspace\addresbook_tests
+collected 0 items
+
+============================ no tests ran in 0.00s ============================
+
+C:\Users\xmerk\.jenkins\workspace\addresbook_tests>exit 4 
+Build step 'Virtualenv Builder' marked build as failure
+Finished: FAILURE
